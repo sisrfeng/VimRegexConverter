@@ -46,13 +46,13 @@ The string MUST begin with the mode describing the regex i.e. `'\m'`, `'\M'`,
 An example to call the function is:
 >
     call ConvertRegex('v', '\m-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>')
-<
+
 which will return `\v-=<\d+L=>|0[xX][0-9a-fA-F]+>`.
 
 To do the reverse operation the call is:
 >
     call ConvertRegex('m', '\v-=<\d+L=>|0[xX][0-9a-fA-F]+>')
-<
+
 which will return `\m-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>`
 
 ===============================================================================
