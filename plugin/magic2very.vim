@@ -1,21 +1,35 @@
 " 用法
-    vno <leader>r                <cmd>call Get_very_magiC()<cr>
-    nno <Leader>r  y<cmd>call pairs#process("'`".'"', 'i')q<cr><esc><cmd>call Get_very_magiC()<cr>
+    nno <Leader>r    <Cmd>norm  vq"ry<cr>
+                    \<Cmd>call Get_very_magiC()<cr>
+
+    "\ 还得改
+    "\ vno <leader>r    <cmd>call Get_very_magiC()<cr>
 
     func! Get_very_magiC()
-        normal! "ry
-        let @r = '\v'..s:very_magiC( @r )
-        normal! hh
-        normal! mt
-        exec "normal! o\<esc>"
-        normal! `t
-        put r
+        let @r = '\v' . s:very_magiC( @r )
+        exe "norm \<M-?>"
+        norm vq
+        norm! "rp
     endf
         " \        pattern       : ' \(\S\+\s*[;=]\)\@=',
 
 
+    "\ func! Get_very_magiC()
+    "\     normal! "ry
+    "\     let @r = '\v' . s:very_magiC( @r )
+    "\     normal! hh
+    "\     normal! mt
+    "\     exec "normal! o\<esc>"
+    "\     normal! `t
+    "\     put r
+    "\ endf
+
+    "\ nno <Leader>r  y<cmd>call pairs#process("'`#" . '"', 'i')q<cr><esc><cmd>call Get_very_magiC()<cr>
+                                             "\ ¿'"#¿ 都可以用于包裹regex
+
+
     " 不用本插件:
-        nnor <leader>r "ryiW:let @o = "<c-r>r" ->substitute( '\v\\(\W)' , '\1', 'ge' )<cr><esc>/\v<c-r>o
+        "\ nnor <leader>r "ryiW:let @o = "<c-r>r" ->substitute( '\v\\(\W)' , '\1', 'ge' )<cr><esc>/\v<c-r>o
                     " "r: 复制到寄存器r                                                      " 最后不加<cr>:现在有些不准, 等校正
                             " @o: 输出到寄存器o
         " vnor <leader>r   y:let @" = "<c-r>r" ->substitute( '\v\\(\W)' , '\1', 'ge' )<cr><esc>o\v<c-r>"<esc>
